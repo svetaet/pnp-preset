@@ -1,0 +1,49 @@
+{
+	"name": "pnp-preset",
+	"author": "svetaet",
+	"license": "MIT",
+	"scripts": {
+		"start": "yarn build && yarn npm-run-all --parallel watch server",
+		"build": "yarn webpack --config webpack.config.js",
+		"watch": "yarn build --watch",
+		"server": "nodemon dist/index.js",
+		"ts": "tsc --watch",
+		"lint": "eslint ./**/*",
+		"fix": "eslint ./**/* --fix"
+	},
+	"devDependencies": {
+		"@babel/core": "^7.9.0",
+		"@babel/preset-typescript": "^7.9.0",
+		"@typescript-eslint/eslint-plugin": "^2.26.0",
+		"@typescript-eslint/parser": "^2.26.0",
+		"@yarnpkg/pnpify": "^2.0.0-rc.20",
+		"babel-loader": "^8.1.0",
+		"clean-webpack-plugin": "^3.0.0",
+		"eslint": "^6.8.0",
+		"eslint-config-prettier": "^6.10.1",
+		"eslint-loader": "^3.0.3",
+		"eslint-plugin-prettier": "^3.1.2",
+		"husky": "^4.2.3",
+		"lint-staged": "^10.1.1",
+		"nodemon": "^2.0.2",
+		"npm-run-all": "^4.1.5",
+		"pnp-webpack-plugin": "^1.6.4",
+		"prettier": "^2.0.2",
+		"typescript": "^3.8.3",
+		"webpack": "^4.42.1",
+		"webpack-bundle-analyzer": "^3.6.1",
+		"webpack-cli": "^3.3.11",
+		"webpack-node-externals": "^1.7.2"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{ts,js,json}": [
+			"eslint --fix",
+			"git add"
+		]
+	}
+}
